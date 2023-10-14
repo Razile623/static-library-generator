@@ -1,0 +1,167 @@
+body{
+    background-color: white;
+    
+
+}
+.button-container{
+    background-color: white;
+    position:static;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: 5vw;
+    height: 30vh;
+    margin-left: 295%;
+    margin-top: -200%;
+}
+
+.add-button{
+    position: absolute;
+    background-color: black;
+    color: white; 
+    width: 5vw;
+    height: 10vh;
+    top: 40%;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+.add-all-button{
+    position: absolute;
+    margin-top: 100%;
+    background-color: black;
+    color: white;
+    width: 5vw;
+    height: 10vh;
+    top: 30%;
+    cursor: pointer;   
+    border-radius: 1rem;
+}
+/*-----------------------------MEDIA QUERIES------------------------------------------------------------*/
+
+/* @media (min-width: 2560px ) {
+  .button-container{
+    margin-left: 16%;
+    margin-top: 50%;
+  }
+  .add-button,
+  .add-all-button {
+     display: inline-block;
+    font-size: 2rem;
+    width: 6vw;
+    height: 10vh;
+    margin-left: 16%;
+    margin-top: 50%;
+  }
+  .add-button{
+    margin-top: 25%;
+    font-size: 4rem;
+    width: 20%;
+    margin-left: 130%;
+
+  }
+  .add-all-button{
+    margin-top: 70%;
+    font-size: 4rem;
+    width: 20%;
+    margin-left: 130%;
+  }
+}
+@media (max-width:1440px){
+  .button-container{
+    top: 50%;
+  }
+}
+@media(max-width:1024px){
+  .button-container{
+    top: 50%;
+  }
+  .add-button,
+  .add-all-button {
+    font-size: .8rem;
+    width: 7vw;
+    height: 10vh;
+    margin-left: -30%;
+    border-radius: 1%;
+  }
+  .add-all-button{
+    margin-top: 80%;
+  }
+}
+@media(max-width:768px){
+  .button-container{
+    top: 50%;
+  }
+  .add-button,
+  .add-all-button {
+    font-size: .7rem;
+    width: 6vw;
+    height: 10vh;
+    margin-left: 0%;
+    border-radius: 1%;
+  }
+  .add-all-button{
+    margin-top: 80%;
+  }
+} */
+
+
+/* Media Queries */
+
+/* Larger Screens (2560px and above) */
+@media (min-width: 2560px) {
+  /* ... (Previous styles) ... */
+
+  /* Middle Panel */
+  .button-container {
+      margin-left: 16%;
+      margin-top: 50%;
+  }
+
+  .add-button,
+  .add-all-button {
+      font-size: 4rem;
+      width: 20%;
+      margin-left: 130%;
+  }
+  .add-button{
+    margin-top: 40%;
+  }
+  .add-all-button{
+    margin-top: 70%;
+  }
+}
+
+/* Larger Screens (1440px and below) */
+@media (max-width: 1440px) {
+  /* ... (Previous styles) ... */
+
+  /* Middle Panel */
+  .button-container {
+      top: 50%;
+  }
+}
+
+/* Larger Screens (1024px and below) */
+@media (max-width: 1024px) {
+
+
+  /* Middle Panel */
+  .button-container {
+      top: 50%;
+  }
+}
+
+/* Larger Screens (768px and below) */
+@media (max-width: 768px) {
+
+  .button-container {
+      top: 50%;
+  }
+  .add-all-button{
+    margin-top: 150%;
+  }
+  .add-button, .add-all-button{
+    border-radius: 5%;
+  }
+}
+

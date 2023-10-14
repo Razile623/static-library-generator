@@ -1,0 +1,577 @@
+.right-panel {
+    flex-direction: column;
+    margin: auto;
+    background-color: #D9D9D9;
+    position: absolute;
+    display: inline-block;
+    width: 41vw;
+    height: 90vh;
+    margin-left: 350%;
+    margin-top: -300%;
+    border-radius: 1rem;
+    border: 1px solid black;
+
+}
+
+.library-name {
+    position: relative;
+    display: inline-flex;
+    background-color: white;
+    width: 20vw;
+    height: 8.2vh;
+    margin-left: 0%;
+    border: .5px solid black;
+    font-size: 20px;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    font-size: clamp(0.3125rem, -0.625rem + 3vw, 1.0625rem);
+}
+
+.library-type {
+    position: relative;
+    display: inline-block;
+    accent-color: green;
+    width: 20px;
+    height: 20px;
+}
+
+.label {
+    margin-left: 2%;
+    font-size: large;
+    user-select: none;
+}
+
+.function-list-right-panel {
+    background-color: white;
+    position: relative;
+    display: block;
+    margin-top: 3%;
+    left: 5%;
+    width: 36.5vw;
+    height: 70vh;
+    margin-left: .5%;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border: 1px solid black;
+    overflow: scroll;
+}
+
+
+.added-Function {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background-color: #C4C3C7;
+    height: 4vh;
+    z-index: 2;
+    font-size: large;
+    border-color: none;
+    border: none;
+    overflow: auto;
+}
+
+.added-Function:hover {
+    background-color: rgb(235, 227, 227);
+}
+
+.added-Function[type=text]:focus {
+    background-color: white;
+}
+
+
+
+#name {
+    margin-left: 6%;
+    margin-top: 4%;
+    font-size: clamp(0.25rem, -0.375rem + 2vw, 0.75rem);
+}
+
+.library-type {
+    margin-left: 3%;
+
+}
+
+.label {
+    font-size: clamp(0.625rem, -0.1563rem + 2.5vw, 1.25rem);
+}
+
+button {
+    position: relative;
+    background-color: black;
+    color: white;
+    width: 5vw;
+    height: 5vh;
+    cursor: pointer;
+    border-radius: .5rem;
+
+}
+
+.function-button {
+    /* font-size: 50px; */
+    background-color: aqua;
+    width: 50%;
+    height: 0%;
+    margin-top: -45%;
+    margin-bottom: 5%;
+    margin-left: 47%;
+    position: absolute;
+    display: inline-flex;
+}
+
+.edit-button {
+    color: blue;
+    position: relative;
+    display: flex;
+    background-color: transparent;
+    width: 10%;
+    color: black;
+    border: NONE;
+    margin-top: 76%;
+    margin-left: -30%;
+    z-index: 1000;
+    transform: translateX(-50%);
+    font-weight: bolder;
+    transform: rotate(45deg);
+
+}
+
+.edit-button:hover {
+    font-size: 35px;
+}
+
+.remove-button:hover {
+    font-size: 35px;
+}
+
+.remove-button {
+    color: black;
+    position: relative;
+    display: flex;
+    background-color: transparent;
+    width: 6%;
+    color: black;
+    border: NONE;
+    margin-top: 75%;
+    margin-left: 85%;
+    z-index: 1000;
+    transform: translateX(-50%);
+    left: 0%;
+    font-weight: bolder;
+}
+
+.button-color {
+    color: black;
+}
+
+#lib-name {
+    display: inline-block;
+    position: absolute;
+    margin-left: 7%;
+    margin-top: 2%;
+    font-size: larger;
+}
+
+.create-button {
+    display: inline-block;
+    margin-top: 1%;
+    margin-left: 60%;
+    width: 6vw;
+    background-color: white;
+    color: black;
+    font-size: clamp(0.3125rem, -0.4688rem + 2.5vw, 0.9375rem);
+}
+
+.download-button {
+    position: absolute;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: 6vw;
+    color: black;
+    background-color: #C4C3C7;
+    font-size: clamp(0.3125rem, -0.4688rem + 2.5vw, 0.9375rem);
+}
+
+.download-button.ready {
+    background-color: white;
+}
+
+.edit-button,
+.remove-button {
+    top: 15%;
+    font-size: x-large;
+}
+
+/*-------------------------------------------------------MEDIA QUERIES---------------------------------------------------------------*/
+/* @media (min-width: 2560px) {
+    .right-panel {
+        display: inline-block;
+        width: 60vw;
+        height: 110vh;
+        margin-left: 190%;
+        margin-top: -224%;
+    }
+
+    .function-list-right-panel {
+        width: 91%;
+        height: 80%;
+        left: 4%;
+    }
+
+    .library-name {
+        font-size: 2rem;
+        width: 22vw;
+        height: 9vh;
+    }
+
+    .library-type {
+        margin-top: 1.5%;
+        margin-left: 2%;
+        width: 3vw;
+        height: 5vh;
+        position: absolute;
+    }
+
+    .label {
+        font-size: 2rem;
+        margin-left: 10%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: 2rem;
+        margin-top: 1.5%;
+        margin-bottom: 1%;
+        margin-left: 1%;
+        width: 15%;
+        height: 6%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+
+    #lib-name {
+        font-size: 2.5rem;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 2.5rem;
+        margin-top: 75%;
+    }
+
+    .remove-button {
+        margin-top: 74%;
+    }
+}
+
+@media(max-width:1440px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 40.5vw;
+        margin-left: 55%;
+        margin-top: -33.5%;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 71vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1.5rem;
+        margin-top: 70%;
+    }
+
+    .remove-button {
+        margin-top: 69%;
+    }
+
+    #lib-name {
+        font-size: 1.3rem;
+        top: 90%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: 1rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+}
+
+@media(max-width:1024px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 56.5vw;
+        margin-left: 54%;
+        margin-top: -47%;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 70vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1rem;
+        margin-top: 70%;
+    }
+
+    #lib-name {
+        font-size: 1rem;
+        top: 89%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: .8rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+}
+
+@media(max-width:768px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 74vw;
+        margin-left: 55%;
+        margin-top: -62%;
+    }
+
+    .library-name {
+        font-size: .9rem;
+        width: 22vw;
+        height: 7vh;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 70vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1rem;
+        margin-top: 70%;
+    }
+
+    #lib-name {
+        font-size: .9rem;
+        top: 89%;
+    }
+
+    .create-button,
+    .download-button {
+        border-radius: none;
+        font-size: .6rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+} */
+
+/* Larger Screens (2560px and above) */
+@media (min-width: 2560px) {
+    .right-panel {
+        display: inline-block;
+        width: 60vw;
+        height: 110vh;
+        margin-left: 190%;
+        margin-top: -224%;
+    }
+
+    .function-list-right-panel {
+        width: 91%;
+        height: 80%;
+        left: 4%;
+    }
+
+    .library-name {
+        font-size: 3rem !important;
+        width: 22vw;
+        height: 9vh;
+    }
+
+    .library-type {
+        margin-top: 1.5%;
+        margin-left: 2%;
+        width: 3vw;
+        height: 5vh;
+        position: absolute;
+    }
+
+    .label {
+        font-size: 4rem !important;
+        margin-left: 10%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: 3rem !important;
+        margin-top: 1.5%;
+        margin-bottom: 1%;
+        margin-left: 1%;
+        width: 15%;
+        height: 6%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+
+    #lib-name {
+        font-size: 3rem !important;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 4rem !important;
+        margin-top: 75%;
+    }
+
+    .remove-button {
+        margin-top: 74%;
+    }
+}
+
+/* Larger Screens (1440px and below) */
+@media (max-width: 1440px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 56vw;
+        margin-left: 348%;
+        margin-top: -380%;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 71vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1.5rem;
+        margin-top: 70%;
+    }
+
+    .remove-button {
+        margin-top: 69%;
+    }
+
+    #lib-name {
+        font-size: 1.3rem;
+        top: 90%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: 1rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+}
+
+/* Larger Screens (1024px and below) */
+@media (max-width: 1024px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 63vw;
+        margin-left: 350%;
+        margin-top: -430%;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 70vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1rem;
+        margin-top: 70%;
+    }
+
+    #lib-name {
+        font-size: 1rem;
+        top: 89%;
+    }
+
+    .create-button,
+    .download-button {
+        font-size: .8rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+}
+
+/* Larger Screens (768px and below) */
+@media (max-width: 768px) {
+    .right-panel {
+        width: 43.5vw;
+        height: 84vw;
+        margin-left: 352%;
+        margin-top: -572%;
+    }
+
+    .library-name {
+        font-size: .9rem;
+        width: 22vw;
+        height: 7vh;
+    }
+
+    .function-list-right-panel {
+        width: 38vw;
+        margin: 2% auto;
+        margin-left: 1.5%;
+        height: 70vh;
+    }
+
+    .edit-button,
+    .remove-button {
+        font-size: 1rem;
+        margin-top: 70%;
+    }
+
+    #lib-name {
+        font-size: .9rem;
+        top: 89%;
+    }
+
+    .create-button,
+    .download-button {
+        border-radius: none;
+        font-size: .6rem;
+        margin-top: -1%;
+    }
+
+    .create-button {
+        margin-left: 60%;
+    }
+}
