@@ -1,0 +1,391 @@
+
+
+Sample Library Name
+	Testing1, Sample1, etc.
+
+
+Sample Dummy Functions
+
+	int32_t nfapi_convConfigRequest( STR_EXT_FAPI_CONFIG_REQ *ptConfigReq);
+	int32_t nfapi_convSrsIndication( STR_EXT_FAPI_SRS_IND    *ptSrsInd);
+	int32_t nfapi_convParamRequest( STR_EXT_FAPI_PARAM_REQ *ptParamReq);
+
+
+Features
+  Right Panel Features (IMPORTANT)
+	Input Name of the Library (Required)
+	Input the Dummy Function to the input field (Required)
+	Select the library type(Static(.a) or Shared(.so)) (Required)
+	Add Input field (Required)
+	Remove Input field or functions (Required)
+	Download the generated library (Required)
+	Create Button opens a the modal/Summary (Required)
+	Display the library name with a file extension according to the library type
+	Input fields/ Functions can be editted 
+	Alert the user if there are any functions that doesn't follow the function format/Regex
+	Alert the user if library name is empty 
+	Alert the user if the input field or if there is no input added
+
+ Left Panel Features
+	Browse files and functions  to the host device (Required)
+	Search Box notify and highlights the terms that matches the user's input into the search box
+	Save C files in the browser
+	Remove C files
+	Extract the functions in the files (Required)
+	Display the extracted functions of the C files in the library (Required)
+
+ Middle Panel Features
+	Add button adds the selected functions in from the left panel to the right panel (Required)
+	Add all button adds all the functions in from the left panel to the right panel (Required)
+	Alert the user if there is  no selected functions 
+
+ Modal Features (IMPORTANT)
+	Display the library name, library type, and functions to be generated (Required)
+	Has Cancel button to abort/close the creation/Generation of the library (Required)
+	Has Confirm button to confirm the creation/Generation of the library (Required)
+
+
+MANUAL
+	Overview
+		The Library Generation Tool is a user-friendly web application designed to facilitate the 		seamless creation of custom libraries. The tool is divided into three main panels—Right, Left, 		and Middle—each serving a distinct purpose in the library generation process.
+		
+		Right Panel Features (Library Configuration):
+
+			Input Name of the Library: Users must provide a unique name for the library.
+			Input Dummy Function: Specify the dummy function to be included in the library.
+			Select Library Type: Choose between a Static (.a) or Shared (.so) library.
+			Add/Remove Input Fields: Dynamically add or remove input fields and functions as 				needed.
+			Download Generated Library: Users can download the generated library once configured.
+			Create Button: Initiates the library generation process and opens a modal/summary.
+			Display Library Name: The tool displays the library name with the appropriate file 				extension based on the library type.
+			Edit Input Fields/Functions: Allow users to edit input fields and functions as 				required.
+			Alerts: Users are alerted if functions don't follow the specified format/regex, if the 				library name is empty, or if there are no input fields.
+
+		Left Panel Features (File Management):
+
+			Browse Files and Functions: Users can explore and select files and functions from their 				device.
+			Search Box: Highlights terms matching the user's input in the search box.
+			Save/Remove C Files: Enables saving and removing C files in the browser.
+			Extract Functions: Automatically extracts functions from selected C files.
+			Display Extracted Functions: Shows the extracted functions of C files in the library.
+
+		Middle Panel Features (Function Selection):
+
+			Add Button: Adds the selected functions from the left panel to the right panel.
+			Add All Button: Adds all functions from the left panel to the right panel.
+			Alerts: Users are alerted if no functions are selected.
+		
+		Modal Features (Summary and Confirmation):
+
+			Display Information: Presents library name, library type, and functions to be 				generated.
+			Cancel Button: Allows users to abort/close the library creation process.
+			Confirm Button: Enables users to confirm and proceed with library generation.
+	
+
+
+
+
+Functional Requirements
+	User-input Handling - accept the library name, type, and user-defined function declaration
+	User-friendly
+	Library name validation (Correctness)
+	Error handling - inform the user about incorrect inputs or issues during library generation.
+	Function validation (Format)
+	File handling (.a or .so)
+	Function declaration parsing - extracting the function name, return type and the parameter.
+	Type declaration Generation - generate declaration for the user-defined functions (typedef struct)
+	Header file generation - generate a .h file
+	Library compilation - either static or shared
+	Library download
+	Confirmation modal
+	User feedback- indicating whether the process was successful (Alert)
+	Logging - Log relevant events and actions for auditing and debugging purposes.
+
+
+
+Non-Functional Requirements
+	Scalability - (Vertical Scaling)
+		Concurrency - Support concurrent handling of user requests to generate libraries for multiple users simultaneously by threads - Handles by the flask framework(relies on the 	underlying server)
+
+	Efficiency?
+	Reliablility?
+	Flexibility?
+	Maintainability - version control (gitlab)
+	Compatibility - Google Chrome, Microsoft Edge, Mozilla Firefox
+
+	Performance Testing
+		Load Test?
+		Stress Test?
+	
+	User Experience?
+	Robustness - error handling and logging
+	
+	
+
+Program:
+	Database? - None
+	Server - Flask's built-in development server
+		  -Temporary Server for File Downloads(Built-in flask server)
+
+
+
+Flask Endpoint 
+	/generate_library
+	/download_library
+
+
+
+Front-End (React)           Back-End (Flask)
+                                   
+        ---Create Library POST----->|   [Endpoint: /generate_library]
+              (JSON data)                 Extract the user input from JSON Data request -------> generate_type_declarations ---> Header File Generation --> C Source File Generation --> Compilation 
+     --|<--Response (Success)-------| 							Invokes										      and Library Generation	
+     | |                            |<--------------------------------------------------------------------------------------------------------------------------------------------------------|
+     | |<--Response (Error)---------| 
+     |                              
+     |-|---Download Library GET---->|   [Endpoint: /download_library]
+                                   
+       |<--Library File-------------| 
+       |------------Clean Up--------|		
+
+
+
+Web Application Backend Architecture
+
+ 
+     Application  ->  Routing (Flask) ->  Middleware(CORS) -> Utilities and Helper
+      Logic/API						  (Type Declaration Handling Functions,  
+    (HTTP Request) 					     Library Generation Functions)   
+
+ 
+
+In this architecture:
+
+Application Logic/API: This layer contains the core business logic and API endpoints. It handles incoming requests, processes data, and sends responses. This is where your Flask application                        resides.
+
+Routing: Flask's routing system maps URL paths to specific functions or views. Each route defines what should happen when a particular URL is accessed.
+
+Middleware: Middleware components handle various tasks such as CORS (Cross-Origin Resource Sharing) handling, logging, and request/response manipulation. They intercept requests and responses             before they reach the application logic.
+	    
+	   CORS - security feature implemented in web browsers to control access to web resources hosted on one domain by web pages served from other domains.
+
+
+Utilities and Helpers: These are utility functions and helper modules that provide common functionality used throughout the backend. They can include functions for data validation, formatting, and other reusable tasks.
+
+This textual representation offers a high-level overview of the components and their interactions in a web application backend. You can use diagramming tools like draw.io, Lucidchart, or even hand-drawn diagrams to create visual representations based on this structure.
+	
+
+
+Frontend (React):
+
+	When a user interacts with the frontend interface, such as entering a library name, selecting a library type, and adding function inputs, various frontend events and state changes are 	        triggered.
+
+	State changes are managed using React hooks like useState, useEffect, and useRef.
+
+	When the user clicks the "Create" button, a function called createLibrary is called. This function gathers the user's inputs, such as library name, library type, and function inputs, and 		sends a POST request to the backend.
+
+	If the library is generated successfully on the backend, the "Download" button becomes enabled.
+
+
+Backend (Flask):
+
+	The Flask backend receives the POST request from the frontend, specifically in the /generate_library route.
+
+	It processes the request, which includes extracting the library name, library type, and function inputs.
+
+	It generates C/C++ type declarations and a header file based on the provided function inputs. These declarations are created in memory.
+
+	It compiles the generated declarations and sources into a shared or static library using GCC (gcc) depending on the library type. The compiled library is saved with a specific name.
+
+	If there are any errors in this process, it returns an error message.
+
+  Downloading the Library:
+
+	When the user clicks the "Download" button on the frontend, a GET request to the /download_library route is made, including the library name and type.
+
+	The backend locates the appropriate library file, sets the appropriate MIME type for the response, and sends the library file back to the frontend for download.
+
+  Modal:
+
+	There's also a modal component that appears when the user clicks the "Create" button. It displays a summary of the library to be created, including its name, type, and function inputs. The         user can confirm or cancel the creation of the library through this modal.
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Backend Design Overview:
+
+Client (Web Browser):
+
+	The client, typically a web browser, initiates interactions with the web application by making HTTP requests to the server.
+
+Flask Application:
+
+	The Flask web application serves as the backend of the program.
+	It defines routes (endpoints) that handle incoming HTTP requests.
+	The application is responsible for processing requests, generating responses, and interacting with the library generation logic.
+
+Routes and Views:
+
+	Routes are URL patterns defined in the Flask application that map to specific views (Python functions).
+	Views handle the logic for different parts of the application, such as generating libraries and downloading files.
+
+Type Declaration Generator:
+
+	A Python module responsible for generating type declarations and function declarations based on user inputs.
+	It includes functions for parsing input and generating C source code.
+
+Library Generation Logic:
+
+	The library generation logic takes user inputs, generates C source code, and compiles it into a static or shared library (e.g., .a or .so file).
+	This component interacts with the Type Declaration Generator to create source code based on user inputs.
+
+External APIs and Libraries (Not Shown):
+
+	The program may interact with external APIs or libraries for specific purposes, such as file handling or code compilation.
+
+File System:
+
+	The generated library files are temporarily stored on the server's file system.
+
+Configuration (config.py):
+
+	Configuration settings for the application are stored in a configuration file (config.py).
+
+
+
+
+Data Flow and Interaction:
+
+	A client initiates a request by accessing specific URLs defined by the Flask application (e.g., /generate_library or /download_library) via a web browser.
+
+	The Flask application routes these requests to the appropriate view functions (Python functions) for processing.
+
+	For library generation, the Type Declaration Generator creates C source code based on user inputs.
+
+	The Library Generation Logic it will generate a header file then compiles the C source code into a library file (static or shared).
+
+	The generated library file is temporarily saved on the server's file system.
+
+	When a client requests to download the library, the Flask application sends the library file as an HTTP response to the client.
+
+	After the library is successfully downloaded, the server deletes the temporary library file from the file system to keep it clean.
+
+This backend design provides an overview of the key components and interactions within the program. Keep in mind that in a production environment, you may need to consider additional factors such as security, scalability, and error handling to ensure the reliability and performance of the application.
+
+
+
+
+_______________________________________________________________________________________________________________
+**Tool Operation Documentation: Web Application Backend Architecture**
+
+Application Logic/API:
+- Role: Core business logic and API endpoint handler.
+- Responsibilities:
+- Handle incoming HTTP requests.
+- Process data and generate appropriate responses.
+- Location:  Resides in the Flask application.
+
+
+Routing: 
+- Role:  Maps URL paths to specific       functions/views in Flask.
+- Responsibilities:
+- Define actions for different URL patterns.
+- Direct requests to the appropriate functions.
+Location: Integral part of the Flask application.
+
+
+Middleware: 
+-  Role:  Intercepts requests and responses before reaching the application logic.
+-  Included Middleware: 
+ 	-  CORS Middleware: 
+    	-  Enhances security by controlling access to resources from different domains.
+   	-  Allows or restricts cross-origin requests.
+-  Location:  Between Routing and Application Logic.
+
+ Utilities and Helpers: 
+-  Role:  Provide reusable functionality throughout the backend.
+Examples: 
+  			-  Type Declaration Handling Functions.
+  			-  Library Generation Functions.
+  			-  Data validation and formatting.
+-  Location:  Separate modules for clean organization.
+
+**Frontend (React):**
+- **User Interactions:**
+  - Enter library name, select library type, add function inputs.
+  - Trigger frontend events and state changes.
+  - Click "Create" button to initiate library creation.
+- **State Management:**
+  - Utilizes React hooks like useState, useEffect, and useRef.
+
+**Backend (Flask):**
+- **Library Generation Process:**
+  - Receives POST request in the /generate_library route.
+  - Extracts library name, type, and function inputs.
+  - Generates C/C++ type declarations and a header file.
+  - Compiles declarations and sources into a library (static/shared) using GCC.
+  - Returns error message if any issues arise.
+
+**Downloading the Library:**
+- **Process:**
+  - User clicks "Download" button.
+  - Sends GET request to /download_library route with library name and type.
+  - Locates and sends the library file back to the frontend for download.
+
+**Modal:**
+- **Role:** Display a summary of the library to be created.
+- **Actions:**
+  - Appears when the user clicks "Create" button.
+  - Shows library name, type, and function inputs.
+  - User can confirm or cancel library creation through the modal.
+
+**Backend Design Overview:**
+- **Client (Web Browser):**
+  - Initiates interactions by making HTTP requests.
+
+- **Flask Application:**
+  - Serves as the backend.
+  - Defines routes and views to handle requests.
+  - Interacts with library generation logic.
+
+- **Routes and Views:**
+  - Define URL patterns and corresponding Python functions.
+  - Handle logic for generating libraries and downloading files.
+
+- **Type Declaration Generator:**
+  - Generates type declarations and function declarations based on user inputs.
+  - Parses input and generates C source code.
+
+- **Library Generation Logic:**
+  - Takes user inputs, generates C source code, and compiles it into a library.
+  - Interacts with the Type Declaration Generator.
+
+- **External APIs and Libraries:**
+  - May interact with external components for specific purposes (not shown).
+
+- **File System:**
+  - Temporarily stores generated library files.
+
+- **Configuration (config.py):**
+  - Stores configuration settings for the application.
+
+**Data Flow and Interaction:**
+- **Client Request:**
+  - Initiates a request by accessing specific URLs.
+  - Requests are routed to appropriate view functions.
+
+- **Library Generation:**
+  - Type Declaration Generator creates C source code.
+  - Library Generation Logic compiles source into a library.
+  - Temporary library file stored on the server.
+
+- **Download Request:**
+  - User requests to download the library.
+  - Flask sends the library file as an HTTP response.
+
+- **Cleanup:**
+  - After successful download, server deletes the temporary library file.
+
+This backend design overview provides a detailed breakdown of components, their roles, and interactions, offering a comprehensive understanding of the tool's operation. Considerations for security, scalability, and error handling are essential for a robust production environment.
