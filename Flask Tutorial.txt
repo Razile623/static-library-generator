@@ -1,0 +1,26 @@
+Step 1: install the python
+Step 2: create the directory of the project
+Step 3: cd to the directory
+Step 4: create a virtualenv (pip3 install virtualenv)
+Step 5: virtualenv <name>
+Step 6: activate the virtualenv (.\env\Scripts\activate	)- for windows
+Step 7: Install the requirements (pip3 install flask flask-sqlalchemy)
+Step 8: After the installation create a file like app.py
+Step 9: Start coding 
+
+	from flask import Flask
+	
+	app = Flask(__name__) // Referencing this file
+
+	@app.route('/')       // This is an index route so that when we browse to the URL, we don't immediately just 404, 
+				 This is a app route decorator
+
+	def index():          // Define the function for that route
+	    
+   	    return "Hello World!"
+
+	if __name__ == "__main__":
+	     app.run(debug=True) // So that when there's a error it will  pop out on the web page.  
+
+Step 10: Run the application (python3 app.py) or (flask run)
+Step 11: Go to the browser then type: localhost:5000
